@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Page</title>
+    <style>
+        #loading {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #loading-text {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading">
+        <div id="loading-text">Cargando...</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let counter = 0;
+            const loadingText = document.getElementById('loading-text');
+
+            // Función para mostrar mensajes cada 3 segundos
+            const showMessage = () => {
+                counter++;
+
+                if (counter === 1) {
+                    loadingText.innerText = "Ya casi...";
+                } else if (counter === 2) {
+                    loadingText.innerText = "Cargando asi bien chido...";
+                } else if (counter === 3) {
+                    loadingText.innerText = "¿Y como estas?...";
+                } else {
+                    clearInterval(intervalId);
+                    loadingText.innerText = "Va pues, redirigiendo...";
+                    setTimeout(() => {
+                        window.location.href = "page2.html";
+                    }, 2000); 
+                }
+            };
+
+            const intervalId = setInterval(showMessage, 3000);
+        });
+    </script>
+</body>
+
+</html>
